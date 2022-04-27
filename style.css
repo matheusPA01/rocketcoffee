@@ -1,0 +1,505 @@
+:root {
+  --background: #000;
+  --text-color: #FFF;
+  --button: #8257E5;
+  --border: #29292E;
+  --border-menu-mobile: #A8A8B3;
+  --text-color-menu-mobile: #E1E1E6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+
+  background: var(--background);
+  background-image: url("assets/blur-1.png"), url("assets/blur-2.png");
+  background-repeat: no-repeat;
+  background-position: left bottom, right top;
+
+  font-family: 'Manrope', sans-serif;
+
+  display: grid;
+  grid-template-areas:
+  "header header"
+  "section section";
+  grid-template-rows: .1fr 1fr;
+  grid-template-columns: 1fr;
+}
+
+/* Header Style */
+header {
+  grid-area: header;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 3em 0;
+}
+
+div.logo-header {
+  width: 10%;
+}
+
+div.logo-header-mobile {
+  display: none;
+}
+
+/* Navbar */
+nav {
+  width: 35%;
+}
+
+button.hamburger {
+  display: none;
+}
+
+ul.navbar {
+  display: flex;
+  justify-content: space-between;
+
+  list-style: none;
+}
+
+li.navbar-item {
+  position: relative;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+}
+
+li.navbar-item a, li.hamburger-menu-itens a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+li.navbar-item a {
+  padding: 5px 5px;
+  z-index: 1;
+}
+
+li.navbar-item:before {
+  content: "";
+  position: absolute;
+  height: 33.33%;
+  width: 0;
+  background: var(--button);
+  right: 0;
+  z-index: 0;
+  top: 33.33%;
+  transition: all .5s;
+}
+
+li.navbar-item:after {
+  content: "";
+  position: absolute;
+  height: 33.33%;
+  width: 0;
+  background: var(--button);
+  left: 0;
+  z-index: 0;
+  bottom: 0;
+  transition: all .5s;
+}
+
+li.navbar-item a:before {
+  position: absolute;
+  content: "";
+  height: 33.33%;
+  width: 0;
+  background: var(--button);
+  bottom: 66.66%;
+  left: 0;
+  transition: all .5s;
+}
+
+li.navbar-item:hover::before,
+li.navbar-item:hover::after,
+li.navbar-item:hover a:before {
+  width: 100%;
+}
+
+/* Button Header */
+button.navbar-coffee {
+  background: transparent;
+
+  border: 1px solid var(--button);
+  border-radius: 5px;
+
+  color: var(--text-color);
+  text-transform: uppercase;
+
+  padding: 1.1em 3.5em;
+
+  cursor: pointer;
+}
+
+button.navbar-coffee:hover, 
+button.navbar-coffee:focus {
+  animation: pulse 1s;
+  box-shadow: 0 0 0 1em transparent;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--button); }
+}
+
+/* mobile text */
+p.mobile-product-text {
+  display: none;
+}
+
+/* mobile button */
+button.get-mobile-coffee {
+  display: none;
+}
+
+/* Section Product Presentation */
+section.product-presentation {
+  grid-area: section;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.product-presentation-text {
+  text-align: center;
+}
+
+h2.product-presentation-title {
+  color: var(--text-color);
+  font-size: 6em;
+}
+
+h2.product-presentation-title-neon {
+  text-shadow: -1px -1px 0 var(--button), 1px -1px 0 var(--button), -1px 1px 0 var(--button), 1px 1px 0 var(--button);
+
+  font-size: 6em;
+}
+
+
+/* Responsivo */
+@media screen and (max-width: 380px) {
+  body {
+    display: flex;
+    flex-direction: column;
+
+    background-image: url("assets/blur-mobile.png");
+  }
+
+  header {
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(168, 168, 179, .2);
+  }
+
+  div.logo-header {
+    display: none;
+  }
+
+  div.logo-header-mobile {
+    display: flex;
+
+    padding: 0 2em;
+  }
+
+  nav {
+    width: 15%;
+  }
+
+  button.hamburger {
+    background: transparent;
+    border: none;
+
+    display: block;
+  }
+
+  button.hamburger:focus {
+    outline: none;
+  }
+
+  ul.navbar {
+    display: none;
+  }
+
+  button.navbar-coffee {
+    display: none;
+  }
+
+  /* Main */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  p.mobile-product-text {
+    color: var(--text-color);
+    font-size: 2em;
+    text-align: center;
+
+    padding: 2em 0;
+
+    display: block;
+  }
+
+  button.get-mobile-coffee {
+    background: transparent;
+
+    border: 1px solid var(--button);
+    border-radius: 5px;
+  
+    color: var(--text-color);
+    text-transform: uppercase;
+  
+    padding: 1em 3em;
+
+    display: flex;
+    align-items: center;
+  }
+
+  img.get-mobile-coffee-image {
+    margin-left: 1em;
+  }
+
+  /* section product presentation */
+  section.product-presentation {
+    padding-top: 2em;
+  }
+
+  h2.product-presentation-title {
+    font-size: 3em;
+  }
+
+  h2.product-presentation-title-neon {
+    font-size: 3em;
+
+    padding-bottom: 1em;
+  }
+
+  img.product-presentation-image {
+    width: 100%;
+  }
+
+
+  /* Hamburger Menu */
+  div.hamburger-menu-overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: none;
+    
+    background: var(--background);
+
+    flex-direction: column;
+  }
+
+  div.logo-header-mobile-hamburger {
+    padding: 2em;
+  }
+
+  div.hamburger-menu-overlay-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button.hamburger-close {
+    background: transparent;
+    border: none;
+
+    margin: 0 1.5em 0;
+
+    cursor: pointer;
+  }
+
+  li.hamburger-menu-itens {
+    border: 1px solid rgba(168, 168, 179, .2);
+
+    padding: 1em 0;
+  }
+
+  li.hamburger-menu-itens a {
+    color: var(--text-color-menu-mobile);
+
+    margin-left: 2em;
+  }
+}
+
+@media screen and (min-width: 390px) and (max-width: 480px) {
+  body {
+    display: flex;
+    flex-direction: column;
+
+    background-image: url("assets/blur-mobile.png");
+  }
+
+  header {
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(168, 168, 179, .2);
+  }
+
+  div.logo-header {
+    display: none;
+  }
+
+  div.logo-header-mobile {
+    display: flex;
+
+    padding: 0 2em;
+  }
+
+  nav {
+    width: 15%;
+  }
+
+  button.hamburger {
+    background: transparent;
+    border: none;
+
+    display: block;
+  }
+
+  button.hamburger:focus {
+    outline: none;
+  }
+
+  ul.navbar {
+    display: none;
+  }
+
+  button.navbar-coffee {
+    display: none;
+  }
+
+  /* Main */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  p.mobile-product-text {
+    color: var(--text-color);
+    font-size: 2em;
+    text-align: center;
+
+    padding: 2em 0;
+
+    display: block;
+  }
+
+  button.get-mobile-coffee {
+    background: transparent;
+
+    border: 1px solid var(--button);
+    border-radius: 5px;
+  
+    color: var(--text-color);
+    text-transform: uppercase;
+  
+    padding: 1em 3em;
+
+    display: flex;
+    align-items: center;
+  }
+
+  img.get-mobile-coffee-image {
+    margin-left: 1em;
+  }
+
+  /* section product presentation */
+  section.product-presentation {
+    padding-top: 2em;
+  }
+
+  h2.product-presentation-title {
+    font-size: 3em;
+  }
+
+  h2.product-presentation-title-neon {
+    font-size: 3em;
+
+    padding-bottom: 1em;
+  }
+
+  img.product-presentation-image {
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+  }
+
+
+  /* Hamburger Menu */
+  div.hamburger-menu-overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: none;
+    
+    background: var(--background);
+
+    flex-direction: column;
+  }
+
+  div.logo-header-mobile-hamburger {
+    padding: 2em;
+  }
+
+  div.hamburger-menu-overlay-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button.hamburger-close {
+    background: transparent;
+    border: none;
+
+    margin: 0 1.5em 0;
+
+    cursor: pointer;
+  }
+
+  li.hamburger-menu-itens {
+    border: 1px solid rgba(168, 168, 179, .2);
+
+    padding: 1em 0;
+  }
+
+  li.hamburger-menu-itens a {
+    color: var(--text-color-menu-mobile);
+
+    margin-left: 2em;
+  }
+}
+
+/* JS CSS */
+
+div.invisible {
+  display: none;
+}
+
+#hamburger-menu-list > li.selected {
+  border-left: 4px solid var(--button);
+  font-weight: 700;
+}
+
+div.toggle-menu {
+  display: flex;
+}
